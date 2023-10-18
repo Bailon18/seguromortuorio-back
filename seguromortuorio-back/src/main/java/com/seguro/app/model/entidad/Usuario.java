@@ -3,7 +3,7 @@ package com.seguro.app.model.entidad;
 import jakarta.persistence.*;
 import java.util.List;
 
-import com.seguro.app.util.TipoUsuario;
+import com.seguro.app.util.ENUM.TipoUsuario;
 
 @Entity
 public class Usuario {
@@ -16,25 +16,25 @@ public class Usuario {
     private String correoElectronico;
     private String contrasena;
     
+    
     @Enumerated(EnumType.STRING)
     private TipoUsuario tipoUsuario;
 
-    @OneToMany(mappedBy = "tesorero")
-    private List<Aportacion> aportacionesTesorero;
+    @Column(columnDefinition = "BOOLEAN DEFAULT true")
+    private boolean activo;
 
 	public Usuario() {
 		super();
 	}
 
-	public Usuario(Long id, String nombreUsuario, String correoElectronico, String contrasena, TipoUsuario tipoUsuario,
-			List<Aportacion> aportacionesTesorero) {
+	public Usuario(Long id, String nombreUsuario, String correoElectronico, String contrasena, TipoUsuario tipoUsuario) {
 		super();
 		this.id = id;
 		this.nombreUsuario = nombreUsuario;
 		this.correoElectronico = correoElectronico;
 		this.contrasena = contrasena;
 		this.tipoUsuario = tipoUsuario;
-		this.aportacionesTesorero = aportacionesTesorero;
+		this.activo = true;
 	}
 
 	public Long getId() {
@@ -77,13 +77,13 @@ public class Usuario {
 		this.tipoUsuario = tipoUsuario;
 	}
 
-	public List<Aportacion> getAportacionesTesorero() {
-		return aportacionesTesorero;
+	public boolean isActivo() {
+		return activo;
 	}
 
-	public void setAportacionesTesorero(List<Aportacion> aportacionesTesorero) {
-		this.aportacionesTesorero = aportacionesTesorero;
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
-
-    
+   
+	
 }

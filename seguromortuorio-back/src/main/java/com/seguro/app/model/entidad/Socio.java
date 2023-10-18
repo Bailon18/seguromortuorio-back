@@ -30,7 +30,7 @@ public class Socio {
     @Column(columnDefinition = "BOOLEAN DEFAULT true")
     private boolean activo;
 
-
+    /*
     @OneToMany(mappedBy = "socio", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Familiar> familiares;
 
@@ -44,7 +44,7 @@ public class Socio {
     private List<Beneficiario> beneficiarios;
 
     @OneToMany(mappedBy = "socio", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Documento> documentos;
+    private List<Documento> documentos;*/
 
 	public Socio() {
 		super();
@@ -52,8 +52,7 @@ public class Socio {
 
 	public Socio(Long id, String nombre, String apellido, String documentoIdentidad, Date fechaNacimiento, int edad,
 			String direccion, String telefono, String correoElectronico, String contrasena, Date fechaInscripcion,
-			boolean activo, List<Familiar> familiares, List<Aportacion> aportaciones, List<Fallecido> fallecidos,
-			List<Beneficiario> beneficiarios, List<Documento> documentos) {
+			boolean activo) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -67,11 +66,6 @@ public class Socio {
 		this.contrasena = contrasena;
 		FechaInscripcion = fechaInscripcion;
 		this.activo = activo;
-		this.familiares = familiares;
-		this.aportaciones = aportaciones;
-		this.fallecidos = fallecidos;
-		this.beneficiarios = beneficiarios;
-		this.documentos = documentos;
 	}
 
 	public Long getId() {
@@ -169,48 +163,6 @@ public class Socio {
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
-
-	public List<Familiar> getFamiliares() {
-		return familiares;
-	}
-
-	public void setFamiliares(List<Familiar> familiares) {
-		this.familiares = familiares;
-	}
-
-	public List<Aportacion> getAportaciones() {
-		return aportaciones;
-	}
-
-	public void setAportaciones(List<Aportacion> aportaciones) {
-		this.aportaciones = aportaciones;
-	}
-
-	public List<Fallecido> getFallecidos() {
-		return fallecidos;
-	}
-
-	public void setFallecidos(List<Fallecido> fallecidos) {
-		this.fallecidos = fallecidos;
-	}
-
-	public List<Beneficiario> getBeneficiarios() {
-		return beneficiarios;
-	}
-
-	public void setBeneficiarios(List<Beneficiario> beneficiarios) {
-		this.beneficiarios = beneficiarios;
-	}
-
-	public List<Documento> getDocumentos() {
-		return documentos;
-	}
-
-	public void setDocumentos(List<Documento> documentos) {
-		this.documentos = documentos;
-	}
-
-	
 
     
 }

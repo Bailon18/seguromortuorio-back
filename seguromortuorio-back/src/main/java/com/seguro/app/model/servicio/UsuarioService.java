@@ -14,5 +14,12 @@ public interface UsuarioService {
     Usuario saveUsuario(Usuario usuario);
 
     void deleteUsuario(Long usuarioID);
+    
+    Usuario validarInicioSesion(String correoElectronico, String contrasena);
+    
+    boolean existeCorreoElectronico(String correoElectronico);
+    
+    boolean existeNombreUsuario(String nombreUsuario);
+    
 
 }

@@ -1,6 +1,6 @@
 package com.seguro.app.model.entidad;
 
-import com.seguro.app.util.TipoDocumento;
+import com.seguro.app.util.ENUM.TipoDocumento;
 
 import jakarta.persistence.*;
 

@@ -1,6 +1,7 @@
 package com.seguro.app.model.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.seguro.app.model.entidad.Usuario;
@@ -19,7 +20,7 @@ public class UsuarioServiceImpl implements UsuarioService {
    
     @Override
     public List<Usuario> findAllUsuarios() {
-        return usuarioRepository.findAll();
+        return usuarioRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
     }
 
     @Override
@@ -37,4 +38,18 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuarioRepository.deleteById(usuarioID);
     }
     
+    @Override
+    public Usuario validarInicioSesion(String correoElectronico, String contrasena) {
+        return usuarioRepository.findByCorreoElectronicoAndContrasena(correoElectronico, contrasena);
+    }
+    
+    @Override
+    public boolean existeCorreoElectronico(String correoElectronico) {
+        return usuarioRepository.existsByCorreoElectronico(correoElectronico);
+    }
+
+    @Override
+    public boolean existeNombreUsuario(String nombreUsuario) {
+        return usuarioRepository.existsByNombreUsuario(nombreUsuario);
+    }
 }

@@ -2,8 +2,8 @@ package com.seguro.app.model.entidad;
 
 import java.time.LocalDateTime;
 
-import com.seguro.app.util.MetodoPago;
-import com.seguro.app.util.TipoPago;
+import com.seguro.app.util.ENUM.MetodoPago;
+import com.seguro.app.util.ENUM.TipoPago;
 
 import jakarta.persistence.*;
 
@@ -13,7 +13,6 @@ public class Aportacion {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
 
     private LocalDateTime fechaAportacion;
     

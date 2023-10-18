@@ -1,4 +1,4 @@
-package com.seguro.app.util;
+package com.seguro.app.util.ENUM;
 
 public enum TipoUsuario {
 	ADMINISTRADOR,
