@@ -1,7 +1,6 @@
 package com.seguro.app.model.entidad;
 
 import jakarta.persistence.*;
-import java.util.List;
 
 import com.seguro.app.util.ENUM.TipoUsuario;
 

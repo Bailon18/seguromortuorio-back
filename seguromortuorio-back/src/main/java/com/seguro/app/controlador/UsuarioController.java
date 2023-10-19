@@ -26,9 +26,9 @@ public class UsuarioController {
         return usuarioService.findAllUsuarios();
     }
 
-    @GetMapping("/{usuarioID}")
-    public Optional<Usuario> getUsuarioById(@PathVariable Long usuarioID) {
-        return usuarioService.findUsuarioById(usuarioID);
+    @GetMapping("/{id}")
+    public Optional<Usuario> getUsuarioById(@PathVariable Long id) {
+        return usuarioService.findUsuarioById(id);
     }
 
     @PostMapping
@@ -65,5 +65,9 @@ public class UsuarioController {
         return ResponseEntity.ok(existe);
     }
 
-    
+    @PostMapping("/cambiarEstado/{id}/{estado}")
+    public ResponseEntity<Usuario> bloquearUsuario(@PathVariable Long id, @PathVariable boolean estado) {
+        Usuario usuario = usuarioService.bloquearUsuario(id, estado);
+        return new ResponseEntity<>(usuario, HttpStatus.OK);
+    }
 }

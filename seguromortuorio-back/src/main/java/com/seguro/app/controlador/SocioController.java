@@ -12,7 +12,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/socios")
+@RequestMapping("/apifm/socios")
+@CrossOrigin(origins = "*")
 public class SocioController {
 
     @Autowired

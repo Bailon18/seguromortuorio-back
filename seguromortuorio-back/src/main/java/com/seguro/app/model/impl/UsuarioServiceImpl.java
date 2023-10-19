@@ -52,4 +52,12 @@ public class UsuarioServiceImpl implements UsuarioService {
     public boolean existeNombreUsuario(String nombreUsuario) {
         return usuarioRepository.existsByNombreUsuario(nombreUsuario);
     }
+    
+    @Override
+    public Usuario bloquearUsuario(Long id, boolean estado) {
+        Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        usuario.setActivo(estado);
+        return usuarioRepository.save(usuario);
+    }
 }

@@ -30,21 +30,7 @@ public class Socio {
     @Column(columnDefinition = "BOOLEAN DEFAULT true")
     private boolean activo;
 
-    /*
-    @OneToMany(mappedBy = "socio", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Familiar> familiares;
 
-    @OneToMany(mappedBy = "socio", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Aportacion> aportaciones;
-
-    @OneToMany(mappedBy = "socio", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Fallecido> fallecidos;
-
-    @OneToMany(mappedBy = "socio", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Beneficiario> beneficiarios;
-
-    @OneToMany(mappedBy = "socio", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Documento> documentos;*/
 
 	public Socio() {
 		super();

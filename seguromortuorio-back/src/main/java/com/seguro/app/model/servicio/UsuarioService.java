@@ -21,5 +21,7 @@ public interface UsuarioService {
     
     boolean existeNombreUsuario(String nombreUsuario);
     
+    Usuario bloquearUsuario(Long id,  boolean estado);
+    
 
 }
