@@ -2,12 +2,15 @@ package com.seguro.app.controlador;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.seguro.app.model.entidad.Socio;
 import com.seguro.app.model.servicio.SocioService;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,8 +42,21 @@ public class SocioController {
         }
     }
 
-    @PostMapping
-    public ResponseEntity<Socio> createSocio(@RequestBody Socio socio) {
+    //@PostMapping
+    @PostMapping(consumes = { MediaType.MULTIPART_FORM_DATA_VALUE, "multipart/form-data;charset=UTF-8" })
+    public ResponseEntity<Socio> createSocio(
+    		@RequestPart("socio") Socio socio,
+    		@RequestPart(name = "archivo") MultipartFile archivo
+    		) throws IOException {
+    	System.out.println("SOCIO "+ socio);
+        if (archivo != null && !archivo.isEmpty()) {
+            System.out.println("ARCHIVO OK");
+            byte[] archivoBytes = archivo.getBytes();
+            socio.setArchivo(archivoBytes);
+        }else {
+        	System.out.println("ARCHIVO MAL");
+        }
+        
         Socio nuevoSocio = socioService.saveSocio(socio);
         return new ResponseEntity<>(nuevoSocio, HttpStatus.CREATED);
     }

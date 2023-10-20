@@ -19,6 +19,10 @@ public class Familiar {
     private int edad;
     private String direccion;
     private String telefono;
+    
+	@Lob
+	@Column(columnDefinition = "LONGBLOB")
+	private byte[] archivo;
 
     @ManyToOne
     @JoinColumn(name = "socio_id")
@@ -108,6 +112,15 @@ public class Familiar {
 		this.socio = socio;
 	}
 
+	public byte[] getArchivo() {
+		return archivo;
+	}
+
+	public void setArchivo(byte[] archivo) {
+		this.archivo = archivo;
+	}
+
+	
 	
     
 }

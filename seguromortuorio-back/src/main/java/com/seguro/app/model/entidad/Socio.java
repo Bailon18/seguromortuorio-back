@@ -2,8 +2,8 @@ package com.seguro.app.model.entidad;
 
 import jakarta.persistence.*;
 
+import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 public class Socio {
@@ -26,19 +26,24 @@ public class Socio {
     private String contrasena;
     
     private Date FechaInscripcion;
+    
+	@Lob
+	@Column(columnDefinition = "LONGBLOB")
+	private byte[] archivo; // documento 
 
     @Column(columnDefinition = "BOOLEAN DEFAULT true")
     private boolean activo;
-
 
 
 	public Socio() {
 		super();
 	}
 
+
+
 	public Socio(Long id, String nombre, String apellido, String documentoIdentidad, Date fechaNacimiento, int edad,
 			String direccion, String telefono, String correoElectronico, String contrasena, Date fechaInscripcion,
-			boolean activo) {
+			byte[] archivo) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -51,8 +56,11 @@ public class Socio {
 		this.correoElectronico = correoElectronico;
 		this.contrasena = contrasena;
 		FechaInscripcion = fechaInscripcion;
-		this.activo = activo;
+		this.archivo = archivo;
+		this.activo = true;
 	}
+
+
 
 	public Long getId() {
 		return id;
@@ -148,6 +156,25 @@ public class Socio {
 
 	public void setActivo(boolean activo) {
 		this.activo = activo;
+	}
+
+	public byte[] getArchivo() {
+		return archivo;
+	}
+
+	public void setArchivo(byte[] archivo) {
+		this.archivo = archivo;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Socio [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", documentoIdentidad="
+				+ documentoIdentidad + ", fechaNacimiento=" + fechaNacimiento + ", edad=" + edad + ", direccion="
+				+ direccion + ", telefono=" + telefono + ", correoElectronico=" + correoElectronico + ", contrasena="
+				+ contrasena + ", FechaInscripcion=" + FechaInscripcion + ", archivo=" + Arrays.toString(archivo)
+				+ ", activo=" + activo + "]";
 	}
 
     

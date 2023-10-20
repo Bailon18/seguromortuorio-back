@@ -12,4 +12,5 @@ public interface SocioService {
     Socio saveSocio(Socio socio);
     void deleteSocio(Long socioId);
     Socio updateSocio(Long socioId, Socio updatedSocio);
+    
 }
