@@ -42,15 +42,13 @@ public class SocioController {
         }
     }
 
-    //@PostMapping
     @PostMapping(consumes = { MediaType.MULTIPART_FORM_DATA_VALUE, "multipart/form-data;charset=UTF-8" })
     public ResponseEntity<Socio> createSocio(
     		@RequestPart("socio") Socio socio,
     		@RequestPart(name = "archivo") MultipartFile archivo
     		) throws IOException {
-    	System.out.println("SOCIO "+ socio);
+ 
         if (archivo != null && !archivo.isEmpty()) {
-            System.out.println("ARCHIVO OK");
             byte[] archivoBytes = archivo.getBytes();
             socio.setArchivo(archivoBytes);
         }else {
