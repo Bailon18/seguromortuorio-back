@@ -60,5 +60,10 @@ public class FamiliarServiceImpl implements FamiliarService {
         } 
         return null;
     }
+    
+    @Override
+    public List<Familiar> obtenerFamiliaresPorSocioId(Long socioId) {
+        return familiarRepository.findBySocioId(socioId);
+    }
 
 }

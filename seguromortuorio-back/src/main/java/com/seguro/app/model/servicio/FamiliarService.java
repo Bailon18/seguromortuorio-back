@@ -10,4 +10,6 @@ public interface FamiliarService {
     Familiar saveFamiliar(Familiar familiar);
     void deleteFamiliar(Long familiarId);
     Familiar updateFamiliar(Long familiarId, Familiar updatedFamiliar);
+    
+    List<Familiar> obtenerFamiliaresPorSocioId(Long socioId);
 }

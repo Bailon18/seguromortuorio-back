@@ -2,15 +2,21 @@ package com.seguro.app.controlador;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.seguro.app.model.entidad.Familiar;
 import com.seguro.app.model.servicio.FamiliarService;
+
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/familiares")
+@RequestMapping("/apifm/familiares")
+@CrossOrigin(origins = "*")
 public class FamiliarController {
 
     @Autowired
@@ -36,11 +42,25 @@ public class FamiliarController {
         }
     }
 
-    @PostMapping
-    public ResponseEntity<Familiar> createFamiliar(@RequestBody Familiar familiar) {
+    @PostMapping(consumes = { MediaType.MULTIPART_FORM_DATA_VALUE, "multipart/form-data;charset=UTF-8" })
+    public ResponseEntity<Familiar> createFamiliar(
+    		@RequestPart("familiar") Familiar familiar,
+    		@RequestPart(name = "archivo") MultipartFile archivo
+    		) throws IOException {
+    	
+    	
+        if (archivo != null && !archivo.isEmpty()) {
+            byte[] archivoBytes = archivo.getBytes();
+            familiar.setArchivo(archivoBytes);
+        }else {
+        	System.out.println("ARCHIVO MAL");
+        }
+    	
         Familiar nuevoFamiliar = familiarService.saveFamiliar(familiar);
         return new ResponseEntity<>(nuevoFamiliar, HttpStatus.CREATED);
     }
+    
+    
 
     @DeleteMapping("/{familiarId}")
     public ResponseEntity<Void> deleteFamiliar(@PathVariable Long familiarId) {
@@ -56,5 +76,11 @@ public class FamiliarController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+    
+   
+    @GetMapping("/por-socio/{socioId}")
+    public List<Familiar> obtenerFamiliaresPorSocioId(@PathVariable Long socioId) {
+        return familiarService.obtenerFamiliaresPorSocioId(socioId);
     }
 }
