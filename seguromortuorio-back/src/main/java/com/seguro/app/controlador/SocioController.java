@@ -70,4 +70,18 @@ public class SocioController {
         Socio socio = socioService.updateSocio(socioId, updatedSocio);
         return new ResponseEntity<>(socio, HttpStatus.OK);
     }
+    
+    @GetMapping("/exists-correo")
+    public ResponseEntity<Boolean> existsByCorreoElectronico(@RequestParam String correoElectronico) {
+        boolean exists = socioService.existsByCorreoElectronico(correoElectronico);
+        HttpStatus status = exists ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+        return new ResponseEntity<>(exists, status);
+    }
+
+    @GetMapping("/exists-documento")
+    public ResponseEntity<Boolean> existsByDocumentoIdentidad(@RequestParam String documentoIdentidad) {
+        boolean exists = socioService.existsByDocumentoIdentidad(documentoIdentidad);
+        HttpStatus status = exists ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+        return new ResponseEntity<>(exists, status);
+    }
 }

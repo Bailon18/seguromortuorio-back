@@ -56,9 +56,17 @@ public class SocioServiceImpl implements SocioService {
             socio.setFechaInscripcion(updatedSocio.getFechaInscripcion());
             socio.setActivo(updatedSocio.isActivo());
 
-            // Actualiza la lista de familiares, aportaciones, fallecidos, beneficiarios, documentos según sea necesario.
-
             return socioRepository.save(socio);
         } return null;
+    }
+    
+    @Override
+    public boolean existsByCorreoElectronico(String correoElectronico) {
+        return socioRepository.existsByCorreoElectronico(correoElectronico);
+    }
+
+    @Override
+    public boolean existsByDocumentoIdentidad(String documentoIdentidad) {
+        return socioRepository.existsByDocumentoIdentidad(documentoIdentidad);
     }
 }

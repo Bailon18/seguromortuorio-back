@@ -12,4 +12,5 @@ public interface FamiliarService {
     Familiar updateFamiliar(Long familiarId, Familiar updatedFamiliar);
     
     List<Familiar> obtenerFamiliaresPorSocioId(Long socioId);
+    boolean existsByDocumentoIdentidad(String documentoIdentidad);
 }

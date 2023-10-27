@@ -8,4 +8,5 @@ import com.seguro.app.model.entidad.Familiar;
 public interface FamiliarRepository extends JpaRepository<Familiar, Long> {
   
 	List<Familiar> findBySocioId(Long socioId);
+	boolean existsByDocumentoIdentidad(String documentoIdentidad);
 }

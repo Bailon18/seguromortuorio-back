@@ -83,4 +83,11 @@ public class FamiliarController {
     public List<Familiar> obtenerFamiliaresPorSocioId(@PathVariable Long socioId) {
         return familiarService.obtenerFamiliaresPorSocioId(socioId);
     }
+    
+    @GetMapping("/exists-documento")
+    public ResponseEntity<Boolean> existsByDocumentoIdentidad(@RequestParam String documentoIdentidad) {
+        boolean exists = familiarService.existsByDocumentoIdentidad(documentoIdentidad);
+        HttpStatus status = exists ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+        return new ResponseEntity<>(exists, status);
+    }
 }

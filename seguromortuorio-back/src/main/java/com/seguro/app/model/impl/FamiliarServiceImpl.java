@@ -65,5 +65,10 @@ public class FamiliarServiceImpl implements FamiliarService {
     public List<Familiar> obtenerFamiliaresPorSocioId(Long socioId) {
         return familiarRepository.findBySocioId(socioId);
     }
+    
+    @Override
+    public boolean existsByDocumentoIdentidad(String documentoIdentidad) {
+        return familiarRepository.existsByDocumentoIdentidad(documentoIdentidad);
+    }
 
 }
