@@ -55,9 +55,19 @@ public class FamiliarController {
         }else {
         	System.out.println("ARCHIVO MAL");
         }
+        
+        
+        Familiar familiarnuevo = new Familiar();
+        
+        if(familiar.getId() != null) {
+        	System.out.println("UPDATE");
+        	familiarnuevo = familiarService.updateFamiliar(familiar);
+        }else {
+        	System.out.println("ADDL");
+        	familiarnuevo = familiarService.saveFamiliar(familiar);
+        }
     	
-        Familiar nuevoFamiliar = familiarService.saveFamiliar(familiar);
-        return new ResponseEntity<>(nuevoFamiliar, HttpStatus.CREATED);
+        return new ResponseEntity<>(familiarnuevo, HttpStatus.CREATED);
     }
     
     
@@ -69,8 +79,8 @@ public class FamiliarController {
     }
 
     @PutMapping("/{familiarId}")
-    public ResponseEntity<Familiar> updateFamiliar(@PathVariable Long familiarId, @RequestBody Familiar updatedFamiliar) {
-        Familiar familiar = familiarService.updateFamiliar(familiarId, updatedFamiliar);
+    public ResponseEntity<Familiar> updateFamiliar(@RequestBody Familiar updatedFamiliar) {
+        Familiar familiar = familiarService.updateFamiliar(updatedFamiliar);
         if (familiar != null) {
             return new ResponseEntity<>(familiar, HttpStatus.OK);
         } else {

@@ -55,8 +55,15 @@ public class SocioController {
         	System.out.println("ARCHIVO MAL");
         }
         
-        Socio nuevoSocio = socioService.saveSocio(socio);
-        return new ResponseEntity<>(nuevoSocio, HttpStatus.CREATED);
+        Socio socioretorno = new Socio();
+        
+        if(socio.getId() != null) {
+        	socioretorno = socioService.updateSocio(socio);
+        }else {
+        	socioretorno = socioService.saveSocio(socio);
+        }
+       
+        return new ResponseEntity<>(socioretorno, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{socioId}")
@@ -65,12 +72,8 @@ public class SocioController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping("/{socioId}")
-    public ResponseEntity<Socio> updateSocio(@PathVariable Long socioId, @RequestBody Socio updatedSocio) {
-        Socio socio = socioService.updateSocio(socioId, updatedSocio);
-        return new ResponseEntity<>(socio, HttpStatus.OK);
-    }
-    
+
+
     @GetMapping("/exists-correo")
     public ResponseEntity<Boolean> existsByCorreoElectronico(@RequestParam String correoElectronico) {
         boolean exists = socioService.existsByCorreoElectronico(correoElectronico);

@@ -38,25 +38,24 @@ public class FamiliarServiceImpl implements FamiliarService {
     }
 
     @Override
-    public Familiar updateFamiliar(Long familiarId, Familiar updatedFamiliar) {
-        Optional<Familiar> existingFamiliar = familiarRepository.findById(familiarId);
+    public Familiar updateFamiliar(Familiar updatedFamiliar) {
+    	
+        Familiar existingFamiliar = familiarRepository.findById(updatedFamiliar.getId()).orElse(null);
+        System.out.println("UPDATE 2"+ updatedFamiliar.getId());
 
-        if (existingFamiliar.isPresent()) {
+        if (existingFamiliar != null ) {
         	
-            Familiar familiar = existingFamiliar.get();
-            
-            // Actualiza todos los campos del objeto Familiar con los valores de updatedFamiliar
-            familiar.setNombre(updatedFamiliar.getNombre());
-            familiar.setApellido(updatedFamiliar.getApellido());
-            familiar.setDocumentoIdentidad(updatedFamiliar.getDocumentoIdentidad());
-            familiar.setTipoParentesco(updatedFamiliar.getTipoParentesco());
-            familiar.setFechaNacimiento(updatedFamiliar.getFechaNacimiento());
-            familiar.setEdad(updatedFamiliar.getEdad());
-            familiar.setDireccion(updatedFamiliar.getDireccion());
-            familiar.setTelefono(updatedFamiliar.getTelefono());
-            familiar.setSocio(updatedFamiliar.getSocio());
+        	existingFamiliar.setNombre(updatedFamiliar.getNombre());
+        	existingFamiliar.setApellido(updatedFamiliar.getApellido());
+        	existingFamiliar.setDocumentoIdentidad(updatedFamiliar.getDocumentoIdentidad());
+        	existingFamiliar.setTipoParentesco(updatedFamiliar.getTipoParentesco());
+        	existingFamiliar.setFechaNacimiento(updatedFamiliar.getFechaNacimiento());
+        	existingFamiliar.setEdad(updatedFamiliar.getEdad());
+        	existingFamiliar.setDireccion(updatedFamiliar.getDireccion());
+        	existingFamiliar.setTelefono(updatedFamiliar.getTelefono());
+        	existingFamiliar.setSocio(updatedFamiliar.getSocio());
 
-            return familiarRepository.save(familiar);
+            return familiarRepository.save(existingFamiliar);
         } 
         return null;
     }

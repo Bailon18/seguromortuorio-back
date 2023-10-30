@@ -38,25 +38,24 @@ public class SocioServiceImpl implements SocioService {
     }
 
     @Override
-    public Socio updateSocio(Long socioId, Socio updatedSocio) {
-        Optional<Socio> existingSocio = socioRepository.findById(socioId);
+    public Socio updateSocio(Socio updatedSocio) {
+        Socio existingSocio = socioRepository.findById(updatedSocio.getId()).orElse(null);
 
-        if (existingSocio.isPresent()) {
-            Socio socio = existingSocio.get();
-            // Actualiza los campos del objeto Socio con los valores de updatedSocio
-            socio.setNombre(updatedSocio.getNombre());
-            socio.setApellido(updatedSocio.getApellido());
-            socio.setDocumentoIdentidad(updatedSocio.getDocumentoIdentidad());
-            socio.setFechaNacimiento(updatedSocio.getFechaNacimiento());
-            socio.setEdad(updatedSocio.getEdad());
-            socio.setDireccion(updatedSocio.getDireccion());
-            socio.setTelefono(updatedSocio.getTelefono());
-            socio.setCorreoElectronico(updatedSocio.getCorreoElectronico());
-            socio.setContrasena(updatedSocio.getContrasena());
-            socio.setFechaInscripcion(updatedSocio.getFechaInscripcion());
-            socio.setActivo(updatedSocio.isActivo());
+        if (existingSocio != null) {
+   
+        	existingSocio.setNombre(updatedSocio.getNombre());
+        	existingSocio.setApellido(updatedSocio.getApellido());
+        	existingSocio.setDocumentoIdentidad(updatedSocio.getDocumentoIdentidad());
+        	existingSocio.setFechaNacimiento(updatedSocio.getFechaNacimiento());
+        	existingSocio.setEdad(updatedSocio.getEdad());
+        	existingSocio.setDireccion(updatedSocio.getDireccion());
+        	existingSocio.setTelefono(updatedSocio.getTelefono());
+        	existingSocio.setCorreoElectronico(updatedSocio.getCorreoElectronico());
+        	existingSocio.setContrasena(updatedSocio.getContrasena());
+        	existingSocio.setFechaInscripcion(updatedSocio.getFechaInscripcion());
+        	existingSocio.setActivo(updatedSocio.isActivo());
 
-            return socioRepository.save(socio);
+            return socioRepository.save(existingSocio);
         } return null;
     }
     

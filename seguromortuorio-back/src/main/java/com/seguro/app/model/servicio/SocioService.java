@@ -11,7 +11,7 @@ public interface SocioService {
     Optional<Socio> findSocioById(Long socioId);
     Socio saveSocio(Socio socio);
     void deleteSocio(Long socioId);
-    Socio updateSocio(Long socioId, Socio updatedSocio);
+    Socio updateSocio(Socio updatedSocio);
     boolean existsByCorreoElectronico(String correoElectronico);
     boolean existsByDocumentoIdentidad(String documentoIdentidad);
     

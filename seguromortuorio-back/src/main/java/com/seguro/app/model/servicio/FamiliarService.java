@@ -9,7 +9,7 @@ public interface FamiliarService {
     Optional<Familiar> findFamiliarById(Long familiarId);
     Familiar saveFamiliar(Familiar familiar);
     void deleteFamiliar(Long familiarId);
-    Familiar updateFamiliar(Long familiarId, Familiar updatedFamiliar);
+    Familiar updateFamiliar(Familiar updatedFamiliar);
     
     List<Familiar> obtenerFamiliaresPorSocioId(Long socioId);
     boolean existsByDocumentoIdentidad(String documentoIdentidad);
