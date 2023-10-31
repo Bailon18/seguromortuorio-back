@@ -10,7 +10,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/aportaciones")
+@RequestMapping("/apifm/aportaciones")
+@CrossOrigin(origins = "*")
 public class AportacionController {
 
     @Autowired

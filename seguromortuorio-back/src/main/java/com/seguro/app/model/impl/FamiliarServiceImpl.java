@@ -41,8 +41,7 @@ public class FamiliarServiceImpl implements FamiliarService {
     public Familiar updateFamiliar(Familiar updatedFamiliar) {
     	
         Familiar existingFamiliar = familiarRepository.findById(updatedFamiliar.getId()).orElse(null);
-        System.out.println("UPDATE 2"+ updatedFamiliar.getId());
-
+       
         if (existingFamiliar != null ) {
         	
         	existingFamiliar.setNombre(updatedFamiliar.getNombre());

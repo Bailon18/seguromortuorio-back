@@ -17,9 +17,9 @@ public class Aportacion {
     private LocalDateTime fechaAportacion;
     
     private double monto;
-    private boolean cuotas;
-    private boolean cuotasFinados;
-    private boolean otrasAportaciones;
+    private double cuotas;
+    private double cuotasFinados;
+    private double otrasAportaciones;
     
     @Column(columnDefinition = "TEXT")
     private String descripcion;
@@ -31,7 +31,7 @@ public class Aportacion {
     private String numeroTransaccion;
     
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "ENUM('Pendiente', 'Pagada', 'Retrasada') DEFAULT 'Pendiente'")
+    @Column(columnDefinition = "ENUM('PENDIENTE', 'PAGADA', 'RETRASADA') DEFAULT 'PENDIENTE'")
     private TipoPago estadoPago;
 
     @ManyToOne
@@ -46,8 +46,8 @@ public class Aportacion {
 		super();
 	}
 
-	public Aportacion(Long id, LocalDateTime fechaAportacion, double monto, boolean cuotas, boolean cuotasFinados,
-			boolean otrasAportaciones, String descripcion, MetodoPago metodoPago, String numeroTransaccion,
+	public Aportacion(Long id, LocalDateTime fechaAportacion, double monto, double cuotas, double cuotasFinados,
+			double otrasAportaciones, String descripcion, MetodoPago metodoPago, String numeroTransaccion,
 			TipoPago estadoPago, Socio socio, Usuario tesorero) {
 		super();
 		this.id = id;
@@ -88,27 +88,27 @@ public class Aportacion {
 		this.monto = monto;
 	}
 
-	public boolean isCuotas() {
+	public double isCuotas() {
 		return cuotas;
 	}
 
-	public void setCuotas(boolean cuotas) {
+	public void setCuotas(double cuotas) {
 		this.cuotas = cuotas;
 	}
 
-	public boolean isCuotasFinados() {
+	public double isCuotasFinados() {
 		return cuotasFinados;
 	}
 
-	public void setCuotasFinados(boolean cuotasFinados) {
+	public void setCuotasFinados(double cuotasFinados) {
 		this.cuotasFinados = cuotasFinados;
 	}
 
-	public boolean isOtrasAportaciones() {
+	public double isOtrasAportaciones() {
 		return otrasAportaciones;
 	}
 
-	public void setOtrasAportaciones(boolean otrasAportaciones) {
+	public void setOtrasAportaciones(double otrasAportaciones) {
 		this.otrasAportaciones = otrasAportaciones;
 	}
 
