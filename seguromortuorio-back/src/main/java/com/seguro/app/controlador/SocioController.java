@@ -87,4 +87,15 @@ public class SocioController {
         HttpStatus status = exists ? HttpStatus.OK : HttpStatus.NOT_FOUND;
         return new ResponseEntity<>(exists, status);
     }
+    
+    @GetMapping("/buscar-socio")
+    public ResponseEntity<List<Socio>> buscarSocioPorFiltro(@RequestParam String filtro) {
+        List<Socio> socioEncontrado = socioService.buscarSocioFiltro(filtro);
+        
+        if (socioEncontrado != null) {
+            return new ResponseEntity<>(socioEncontrado, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }

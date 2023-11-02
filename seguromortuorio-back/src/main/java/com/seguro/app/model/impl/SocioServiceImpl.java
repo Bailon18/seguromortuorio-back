@@ -54,6 +54,7 @@ public class SocioServiceImpl implements SocioService {
         	existingSocio.setContrasena(updatedSocio.getContrasena());
         	existingSocio.setFechaInscripcion(updatedSocio.getFechaInscripcion());
         	existingSocio.setActivo(updatedSocio.isActivo());
+        	existingSocio.setCuotas(updatedSocio.getCuotas());
 
             return socioRepository.save(existingSocio);
         } return null;
@@ -68,4 +69,9 @@ public class SocioServiceImpl implements SocioService {
     public boolean existsByDocumentoIdentidad(String documentoIdentidad) {
         return socioRepository.existsByDocumentoIdentidad(documentoIdentidad);
     }
+
+	@Override
+	public List<Socio> buscarSocioFiltro(String filtro) {
+		return socioRepository.buscarSocioPorFiltro(filtro);
+	}
 }

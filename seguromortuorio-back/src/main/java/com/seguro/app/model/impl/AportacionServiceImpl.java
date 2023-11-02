@@ -43,7 +43,7 @@ public class AportacionServiceImpl implements AportacionService {
             Aportacion aportacion = existingAportacion.get();
             
             aportacion.setFechaAportacion(updatedAportacion.getFechaAportacion());
-            aportacion.setMonto(updatedAportacion.getMonto());
+            //aportacion.setMonto(updatedAportacion.getMonto());
             aportacion.setCuotas(updatedAportacion.isCuotas());
             aportacion.setCuotasFinados(updatedAportacion.isCuotasFinados());
             aportacion.setOtrasAportaciones(updatedAportacion.isOtrasAportaciones());

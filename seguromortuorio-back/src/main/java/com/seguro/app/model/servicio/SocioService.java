@@ -5,6 +5,7 @@ import com.seguro.app.model.entidad.Socio;
 import java.util.List;
 import java.util.Optional;
 
+
 public interface SocioService {
 	
     List<Socio> findAllSocios();
@@ -14,5 +15,6 @@ public interface SocioService {
     Socio updateSocio(Socio updatedSocio);
     boolean existsByCorreoElectronico(String correoElectronico);
     boolean existsByDocumentoIdentidad(String documentoIdentidad);
+    List<Socio> buscarSocioFiltro(String filtro);
     
 }

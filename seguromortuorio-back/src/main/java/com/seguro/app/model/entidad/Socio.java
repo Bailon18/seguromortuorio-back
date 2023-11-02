@@ -7,43 +7,42 @@ import java.util.Date;
 
 @Entity
 public class Socio {
-	
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    private String nombre;
-    private String apellido;
-    private String documentoIdentidad;
-    
-    @Temporal(TemporalType.DATE)
-    private Date fechaNacimiento;
-    
-    private int edad;
-    private String direccion;
-    private String telefono;
-    private String correoElectronico;
-    private String contrasena;
-    
-    private Date FechaInscripcion;
-    
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	private String nombre;
+	private String apellido;
+	private String documentoIdentidad;
+
+	@Temporal(TemporalType.DATE)
+	private Date fechaNacimiento;
+
+	private int edad;
+	private String direccion;
+	private String telefono;
+	private String correoElectronico;
+	private String contrasena;
+
+	private Date FechaInscripcion;
+
+	private double cuotas;
+
 	@Lob
 	@Column(columnDefinition = "LONGBLOB")
-	private byte[] archivo; // documento 
+	private byte[] archivo; // documento
 
-    @Column(columnDefinition = "BOOLEAN DEFAULT true")
-    private boolean activo;
-
+	@Column(columnDefinition = "BOOLEAN DEFAULT true")
+	private boolean activo;
 
 	public Socio() {
 		super();
 	}
 
-
-
 	public Socio(Long id, String nombre, String apellido, String documentoIdentidad, Date fechaNacimiento, int edad,
 			String direccion, String telefono, String correoElectronico, String contrasena, Date fechaInscripcion,
-			byte[] archivo) {
+			byte[] archivo, double coutas) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -57,10 +56,9 @@ public class Socio {
 		this.contrasena = contrasena;
 		FechaInscripcion = fechaInscripcion;
 		this.archivo = archivo;
+		this.cuotas = coutas;
 		this.activo = true;
 	}
-
-
 
 	public Long getId() {
 		return id;
@@ -166,16 +164,12 @@ public class Socio {
 		this.archivo = archivo;
 	}
 
-
-
-	@Override
-	public String toString() {
-		return "Socio [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", documentoIdentidad="
-				+ documentoIdentidad + ", fechaNacimiento=" + fechaNacimiento + ", edad=" + edad + ", direccion="
-				+ direccion + ", telefono=" + telefono + ", correoElectronico=" + correoElectronico + ", contrasena="
-				+ contrasena + ", FechaInscripcion=" + FechaInscripcion + ", archivo=" + Arrays.toString(archivo)
-				+ ", activo=" + activo + "]";
+	public double getCuotas() {
+		return cuotas;
 	}
 
-    
+	public void setCuotas(double cuotas) {
+		this.cuotas = cuotas;
+	}
+
 }

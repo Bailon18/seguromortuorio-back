@@ -16,7 +16,6 @@ public class Aportacion {
 
     private LocalDateTime fechaAportacion;
     
-    private double monto;
     private double cuotas;
     private double cuotasFinados;
     private double otrasAportaciones;
@@ -25,13 +24,11 @@ public class Aportacion {
     private String descripcion;
     
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "ENUM('Efectivo', 'Transferencia Bancaria', 'Otros') DEFAULT 'Efectivo'")
     private MetodoPago metodoPago;
     
     private String numeroTransaccion;
     
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "ENUM('PENDIENTE', 'PAGADA', 'RETRASADA') DEFAULT 'PENDIENTE'")
     private TipoPago estadoPago;
 
     @ManyToOne
@@ -46,13 +43,13 @@ public class Aportacion {
 		super();
 	}
 
-	public Aportacion(Long id, LocalDateTime fechaAportacion, double monto, double cuotas, double cuotasFinados,
+	public Aportacion(Long id, LocalDateTime fechaAportacion, double cuotas, double cuotasFinados,
 			double otrasAportaciones, String descripcion, MetodoPago metodoPago, String numeroTransaccion,
 			TipoPago estadoPago, Socio socio, Usuario tesorero) {
 		super();
 		this.id = id;
 		this.fechaAportacion = fechaAportacion;
-		this.monto = monto;
+	
 		this.cuotas = cuotas;
 		this.cuotasFinados = cuotasFinados;
 		this.otrasAportaciones = otrasAportaciones;
@@ -80,13 +77,6 @@ public class Aportacion {
 		this.fechaAportacion = fechaAportacion;
 	}
 
-	public double getMonto() {
-		return monto;
-	}
-
-	public void setMonto(double monto) {
-		this.monto = monto;
-	}
 
 	public double isCuotas() {
 		return cuotas;
@@ -160,5 +150,19 @@ public class Aportacion {
 		this.tesorero = tesorero;
 	}
 
+	public double getCuotas() {
+		return cuotas;
+	}
+
+	public double getCuotasFinados() {
+		return cuotasFinados;
+	}
+
+	public double getOtrasAportaciones() {
+		return otrasAportaciones;
+	}
+
+	
+	
     
 }
