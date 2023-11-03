@@ -25,6 +25,7 @@ public class AportacionController {
         } else {
             return new ResponseEntity<>(aportaciones, HttpStatus.OK);
         }
+       
     }
 
     @GetMapping("/{aportacionId}")
@@ -47,5 +48,18 @@ public class AportacionController {
     public ResponseEntity<Void> deleteAportacion(@PathVariable Long aportacionId) {
         aportacionService.deleteAportacion(aportacionId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    
+    @GetMapping("/aportacion-aho")
+    public List<Integer> findDistinctYearsBySocioId(@RequestParam Long socioId) {
+        return aportacionService.findDistinctYearsBySocioId(socioId);
+    }
+    
+    @GetMapping("/por-ano-y-socio")
+    public List<Aportacion> getAportacionesPorAnioYIdSocio(
+            @RequestParam Integer year,
+            @RequestParam Long socioId
+    ) {
+        return aportacionService.getAportacionesPorAnioYIdSocio(year, socioId);
     }
 }

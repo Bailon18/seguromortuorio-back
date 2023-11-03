@@ -44,9 +44,9 @@ public class AportacionServiceImpl implements AportacionService {
             
             aportacion.setFechaAportacion(updatedAportacion.getFechaAportacion());
             //aportacion.setMonto(updatedAportacion.getMonto());
-            aportacion.setCuotas(updatedAportacion.isCuotas());
-            aportacion.setCuotasFinados(updatedAportacion.isCuotasFinados());
-            aportacion.setOtrasAportaciones(updatedAportacion.isOtrasAportaciones());
+            aportacion.setCuotas(updatedAportacion.getCuotas());
+            aportacion.setCuotasFinados(updatedAportacion.getCuotasFinados());
+            aportacion.setOtrasAportaciones(updatedAportacion.getOtrasAportaciones());
             aportacion.setDescripcion(updatedAportacion.getDescripcion());
             aportacion.setMetodoPago(updatedAportacion.getMetodoPago());
             aportacion.setNumeroTransaccion(updatedAportacion.getNumeroTransaccion());
@@ -57,5 +57,15 @@ public class AportacionServiceImpl implements AportacionService {
             return aportacionRepository.save(aportacion);
         } 
         return null;
+    }
+    
+    @Override
+    public List<Integer> findDistinctYearsBySocioId(Long socioId) {
+        return aportacionRepository.findDistinctYearsBySocioId(socioId);
+    }
+    
+    @Override
+    public List<Aportacion> getAportacionesPorAnioYIdSocio(Integer year, Long socioId) {
+        return aportacionRepository.findAportacionesByYearAndSocioId(year, socioId);
     }
 }

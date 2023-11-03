@@ -15,4 +15,7 @@ public interface AportacionService {
     void deleteAportacion(Long aportacionId);
 
     Aportacion updateAportacion(Long aportacionId, Aportacion updatedAportacion);
+    
+    List<Integer> findDistinctYearsBySocioId(Long socioId);
+    List<Aportacion> getAportacionesPorAnioYIdSocio(Integer year, Long socioId);
 }
