@@ -15,4 +15,8 @@ public interface SocioRepository extends JpaRepository<Socio, Long> {
     
     @Query(value = "SELECT * FROM Socio WHERE nombre LIKE %:filtro% OR apellido LIKE %:filtro% OR documento_identidad LIKE %:filtro%", nativeQuery = true)
     List<Socio> buscarSocioPorFiltro(@Param("filtro") String filtro);
+
+    // NÚMERO DE SOCIOS ACTIVOS (totales)
+    @Query(value = "SELECT COUNT(*) FROM socio", nativeQuery = true)
+    long getNumeroSociosActivosTotales();
 }

@@ -68,4 +68,19 @@ public class AportacionServiceImpl implements AportacionService {
     public List<Aportacion> getAportacionesPorAnioYIdSocio(Integer year, Long socioId) {
         return aportacionRepository.findAportacionesByYearAndSocioId(year, socioId);
     }
+
+    @Override
+    public double obtenerIngresosTotalesMensuales() {
+        return aportacionRepository.getIngresosTotalesMensuales();
+    }
+
+    @Override
+    public double obtenerIngresosTotalesAnuales() {
+        return aportacionRepository.getIngresosTotalesAnuales();
+    }
+
+    @Override
+    public long obtenerTotalAportacionesRealizadas() {
+        return aportacionRepository.getTotalAportacionesRealizadas();
+    }
 }

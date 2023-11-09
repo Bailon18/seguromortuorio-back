@@ -74,4 +74,9 @@ public class SocioServiceImpl implements SocioService {
 	public List<Socio> buscarSocioFiltro(String filtro) {
 		return socioRepository.buscarSocioPorFiltro(filtro);
 	}
+
+    @Override
+    public long obtenerNumeroSociosActivosTotales() {
+        return socioRepository.getNumeroSociosActivosTotales();
+    }
 }

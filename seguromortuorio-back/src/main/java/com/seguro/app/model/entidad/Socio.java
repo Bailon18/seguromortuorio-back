@@ -2,7 +2,6 @@ package com.seguro.app.model.entidad;
 
 import jakarta.persistence.*;
 
-import java.util.Arrays;
 import java.util.Date;
 
 @Entity

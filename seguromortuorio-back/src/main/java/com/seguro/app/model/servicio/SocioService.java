@@ -16,5 +16,6 @@ public interface SocioService {
     boolean existsByCorreoElectronico(String correoElectronico);
     boolean existsByDocumentoIdentidad(String documentoIdentidad);
     List<Socio> buscarSocioFiltro(String filtro);
+    long obtenerNumeroSociosActivosTotales();
     
 }

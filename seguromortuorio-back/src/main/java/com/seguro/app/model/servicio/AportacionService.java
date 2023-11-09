@@ -2,6 +2,7 @@ package com.seguro.app.model.servicio;
 
 import java.util.List;
 import java.util.Optional;
+
 import com.seguro.app.model.entidad.Aportacion;
 
 public interface AportacionService {
@@ -18,4 +19,10 @@ public interface AportacionService {
     
     List<Integer> findDistinctYearsBySocioId(Long socioId);
     List<Aportacion> getAportacionesPorAnioYIdSocio(Integer year, Long socioId);
+
+	double obtenerIngresosTotalesMensuales();
+
+	double obtenerIngresosTotalesAnuales();
+
+	long obtenerTotalAportacionesRealizadas();
 }
