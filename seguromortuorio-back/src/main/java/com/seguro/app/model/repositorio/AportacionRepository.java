@@ -25,6 +25,6 @@ public interface AportacionRepository extends JpaRepository<Aportacion, Long> {
 	double getIngresosTotalesAnuales();
 
 	// TOTAL DE APORTACIONES REALIZADAS (totales)
-	@Query(value ="SELECT COUNT(a) FROM Aportacion a", nativeQuery = true)
+	@Query(value ="SELECT COUNT(*) FROM aportacion", nativeQuery = true)
 	long getTotalAportacionesRealizadas();
 }

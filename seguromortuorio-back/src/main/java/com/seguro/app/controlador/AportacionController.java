@@ -6,6 +6,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.seguro.app.model.entidad.Aportacion;
 import com.seguro.app.model.servicio.AportacionService;
+import com.seguro.app.model.servicio.SocioService;
+import com.seguro.app.util.DTO.ReporteDTO;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +19,9 @@ public class AportacionController {
 
     @Autowired
     private AportacionService aportacionService;
+
+    @Autowired
+    private SocioService socioService;
 
     @GetMapping
     public ResponseEntity<List<Aportacion>> getAllAportaciones() {
@@ -61,5 +67,23 @@ public class AportacionController {
             @RequestParam Long socioId
     ) {
         return aportacionService.getAportacionesPorAnioYIdSocio(year, socioId);
+    }
+
+
+    @GetMapping("/reportes")
+    public List<ReporteDTO> getReportes() {
+
+        double ingresosTotalesMensuales = aportacionService.obtenerIngresosTotalesMensuales();
+        double ingresosTotalesAnuales = aportacionService.obtenerIngresosTotalesAnuales();
+        long totalAportacionesRealizadas = aportacionService.obtenerTotalAportacionesRealizadas();
+        long numeroSociosActivosTotales = socioService.obtenerNumeroSociosActivosTotales();
+
+        ReporteDTO reporteDTO = new ReporteDTO();
+        reporteDTO.setIngresosTotalesMensuales(ingresosTotalesMensuales);
+        reporteDTO.setIngresosTotalesAnuales(ingresosTotalesAnuales);
+        reporteDTO.setTotalAportacionesRealizadas(totalAportacionesRealizadas);
+        reporteDTO.setNumeroSociosActivosTotales(numeroSociosActivosTotales);
+
+        return List.of(reporteDTO);
     }
 }
