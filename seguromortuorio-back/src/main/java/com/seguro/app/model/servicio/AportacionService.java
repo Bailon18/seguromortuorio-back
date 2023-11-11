@@ -25,4 +25,6 @@ public interface AportacionService {
 	double obtenerIngresosTotalesAnuales();
 
 	long obtenerTotalAportacionesRealizadas();
+
+    List<Object[]> obtenerMontosPorMesyAhoActual();
 }

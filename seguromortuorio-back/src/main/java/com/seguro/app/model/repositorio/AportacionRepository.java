@@ -27,4 +27,15 @@ public interface AportacionRepository extends JpaRepository<Aportacion, Long> {
 	// TOTAL DE APORTACIONES REALIZADAS (totales)
 	@Query(value ="SELECT COUNT(*) FROM aportacion", nativeQuery = true)
 	long getTotalAportacionesRealizadas();
+
+
+	@Query(value = "SELECT todos_meses.mes, COALESCE(SUM(aportacion.cuotas + aportacion.cuotas_finados + aportacion.otras_aportaciones), 0) as monto " +
+               "FROM (SELECT 1 as mes UNION SELECT 2 as mes UNION SELECT 3 as mes UNION SELECT 4 as mes " +
+               "      UNION SELECT 5 as mes UNION SELECT 6 as mes UNION SELECT 7 as mes UNION SELECT 8 as mes " +
+               "      UNION SELECT 9 as mes UNION SELECT 10 as mes UNION SELECT 11 as mes UNION SELECT 12 as mes) todos_meses " +
+               "LEFT JOIN aportacion ON MONTH(aportacion.fecha_aportacion) = todos_meses.mes " +
+               "                 AND YEAR(aportacion.fecha_aportacion) = YEAR(CURRENT_DATE) " +
+               "GROUP BY todos_meses.mes " +
+               "ORDER BY todos_meses.mes", nativeQuery = true)
+	List<Object[]> obtenerMontosPorMes();
 }

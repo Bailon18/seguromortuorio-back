@@ -86,4 +86,10 @@ public class AportacionController {
 
         return List.of(reporteDTO);
     }
+
+    @GetMapping("/montos-por-mes")
+    public ResponseEntity<List<Object[]>> obtenerMontosPorMesyAhoActual() {
+        List<Object[]> montosPorMes = aportacionService.obtenerMontosPorMesyAhoActual();
+        return ResponseEntity.ok(montosPorMes);
+    }
 }

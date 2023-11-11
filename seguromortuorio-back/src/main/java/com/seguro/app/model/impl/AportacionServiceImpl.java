@@ -83,4 +83,9 @@ public class AportacionServiceImpl implements AportacionService {
     public long obtenerTotalAportacionesRealizadas() {
         return aportacionRepository.getTotalAportacionesRealizadas();
     }
+
+    @Override
+    public List<Object[]> obtenerMontosPorMesyAhoActual() {
+        return aportacionRepository.obtenerMontosPorMes();
+    }
 }
