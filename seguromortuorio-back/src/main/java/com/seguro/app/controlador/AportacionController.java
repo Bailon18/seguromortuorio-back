@@ -1,6 +1,7 @@
 package com.seguro.app.controlador;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,7 @@ import com.seguro.app.model.servicio.AportacionService;
 import com.seguro.app.model.servicio.SocioService;
 import com.seguro.app.util.DTO.ReporteDTO;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -91,5 +93,20 @@ public class AportacionController {
     public ResponseEntity<List<Object[]>> obtenerMontosPorMesyAhoActual() {
         List<Object[]> montosPorMes = aportacionService.obtenerMontosPorMesyAhoActual();
         return ResponseEntity.ok(montosPorMes);
+    }
+    
+
+    @GetMapping("/filtro/{socioId}")
+    public ResponseEntity<List<Aportacion>> findAportacionesBySocioAndDateRange(
+            @PathVariable Long socioId,
+            @RequestParam("startDate") String startDate,
+            @RequestParam("endDate") String endDate) {
+
+        LocalDate start = LocalDate.parse(startDate);
+        LocalDate end = LocalDate.parse(endDate);
+
+        List<Aportacion> aportaciones = aportacionService.findAportacionesBySocioAndDateRange(socioId, start, end);
+
+        return new ResponseEntity<>(aportaciones, HttpStatus.OK);
     }
 }

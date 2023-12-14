@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import com.seguro.app.model.entidad.Aportacion;
 import com.seguro.app.model.repositorio.AportacionRepository;
 import com.seguro.app.model.servicio.AportacionService;
+
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -87,5 +89,10 @@ public class AportacionServiceImpl implements AportacionService {
     @Override
     public List<Object[]> obtenerMontosPorMesyAhoActual() {
         return aportacionRepository.obtenerMontosPorMes();
+    }
+    
+    @Override
+    public List<Aportacion> findAportacionesBySocioAndDateRange(Long socioId, LocalDate startDate, LocalDate endDate) {
+        return aportacionRepository.findAportacionesBySocioAndDateRange(socioId, startDate, endDate);
     }
 }

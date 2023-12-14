@@ -55,4 +55,6 @@ public class BeneficiarioServiceImpl implements BeneficiarioService {
         return null;
     }
     
+    
+    
 }

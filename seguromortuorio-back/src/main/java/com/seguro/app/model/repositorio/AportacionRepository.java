@@ -1,5 +1,6 @@
 package com.seguro.app.model.repositorio;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -38,4 +39,11 @@ public interface AportacionRepository extends JpaRepository<Aportacion, Long> {
                "GROUP BY todos_meses.mes " +
                "ORDER BY todos_meses.mes", nativeQuery = true)
 	List<Object[]> obtenerMontosPorMes();
+	
+    @Query(value = "SELECT * FROM aportacion WHERE socio_id = :socioId AND DATE(fecha_aportacion) BETWEEN :startDate AND :endDate", nativeQuery = true)
+    List<Aportacion> findAportacionesBySocioAndDateRange(
+        @Param("socioId") Long socioId,
+        @Param("startDate") LocalDate startDate,
+        @Param("endDate") LocalDate endDate
+    );
 }

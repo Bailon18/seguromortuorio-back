@@ -1,5 +1,6 @@
 package com.seguro.app.model.servicio;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,4 +28,6 @@ public interface AportacionService {
 	long obtenerTotalAportacionesRealizadas();
 
     List<Object[]> obtenerMontosPorMesyAhoActual();
+    
+    public List<Aportacion> findAportacionesBySocioAndDateRange(Long socioId, LocalDate startDate, LocalDate endDate);
 }
