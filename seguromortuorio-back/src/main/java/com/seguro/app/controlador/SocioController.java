@@ -98,4 +98,10 @@ public class SocioController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @PostMapping("/cambiarEstado/{id}/{estado}")
+    public ResponseEntity<Socio> bloquearSocio(@PathVariable Long id, @PathVariable boolean estado) {
+        Socio socio = socioService.bloquearSocio(id, estado);
+        return new ResponseEntity<>(socio, HttpStatus.OK);
+    }
 }

@@ -1,6 +1,7 @@
 package com.seguro.app.model.servicio;
 
 import com.seguro.app.model.entidad.Socio;
+import com.seguro.app.model.entidad.Usuario;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,5 +18,6 @@ public interface SocioService {
     boolean existsByDocumentoIdentidad(String documentoIdentidad);
     List<Socio> buscarSocioFiltro(String filtro);
     long obtenerNumeroSociosActivosTotales();
+    Socio bloquearSocio(Long id,  boolean estado);
     
 }

@@ -5,6 +5,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.seguro.app.model.entidad.Socio;
+import com.seguro.app.model.entidad.Usuario;
 import com.seguro.app.model.repositorio.SocioRepository;
 import com.seguro.app.model.servicio.SocioService;
 
@@ -78,5 +79,13 @@ public class SocioServiceImpl implements SocioService {
     @Override
     public long obtenerNumeroSociosActivosTotales() {
         return socioRepository.getNumeroSociosActivosTotales();
+    }
+
+    @Override
+    public Socio bloquearSocio(Long id, boolean estado) {
+        Socio socio = socioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Socio no encontrado"));
+        socio.setActivo(estado);
+        return socioRepository.save(socio);
     }
 }
